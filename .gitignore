@@ -1,2 +1,5 @@
 .DS_Store
-
+.secret
+node_modules/
+build
+build/
