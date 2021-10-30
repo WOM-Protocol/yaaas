@@ -1,0 +1,17 @@
+{
+  "name": "yaaas-nft-challenge-contract",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bestvictorbusiness/yaaas-nft-challenge-contract.git",
+  "author": "zouhir <zouhirtaousy@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@daonomic/tests-common": "^0.2.2",
+    "@openzeppelin/contracts": "^4.3.2",
+    "@truffle/hdwallet-provider": "^1.4.0",
+    "solidity-coverage": "^0.7.17"
+  },
+  "devDependencies": {
+    "truffle-plugin-verify": "^0.5.15"
+  }
+}

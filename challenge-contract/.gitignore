@@ -1,0 +1,6 @@
+node_modules/
+build/
+tokens/build
+woom-exchange/build
+.secret
+.etherscan-key
