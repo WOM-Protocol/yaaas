@@ -6,20 +6,16 @@ import './IExchangeChallenge.sol';
 import '@openzeppelin/contracts/token/ERC1155/IERC1155.sol';
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 contract ExchangeChallenge is IExchangeChallenge, Ownable{
     
     using SafeMath for uint256;
-    using Counters for Counters.Counter;
     mapping(uint256 => Challenge) public challenges;// marketplace challenges
     mapping(address=>mapping(address => mapping(uint256 => bool))) public noResells;
     IERC20 public MARKET_TOKEN; // marketplace governance token
     uint256 public YAAS_FEES = 10e18;// marketplace token peer challenge token
     
-    Counters.Counter private _challengeId;
-
     constructor(address token){
         MARKET_TOKEN = IERC20(token);
     }
@@ -35,6 +31,7 @@ contract ExchangeChallenge is IExchangeChallenge, Ownable{
      * @param airdropEndAt airdrop end date
      */
     function addChallenge(
+        uint256 challengeId,
         address seller, 
         address collection, 
         uint256 assetId, 
@@ -42,14 +39,13 @@ contract ExchangeChallenge is IExchangeChallenge, Ownable{
         bool allowResell, 
         uint256 saleEnd, 
         uint256 airdropStartAt, 
-        uint256 airdropEndAt)external  override returns (uint256 challengeId){
-            _challengeId.increment();
+        uint256 airdropEndAt)external  override returns (uint256){
             require(noResells[seller][collection][assetId] != true,'Challenge Exchange: Unauthorized sell');
             require(MARKET_TOKEN.balanceOf(seller) >= uint256(YAAS_FEES).mul(amount) , "Challenge Exchange: Insufficient balance");
             require(airdropStartAt > block.timestamp, "Challenge Exchange: invalid start at airdrop");
             require(airdropEndAt > airdropStartAt, "Challenge Exchange: invalid  airdrop");
             MARKET_TOKEN.transferFrom(_msgSender(), owner(), amount.mul(YAAS_FEES));
-            challenges[_challengeId.current()] = Challenge(
+            challenges[challengeId] = Challenge(
                 seller, 
                 collection, 
                 assetId, 
@@ -59,7 +55,8 @@ contract ExchangeChallenge is IExchangeChallenge, Ownable{
                 airdropStartAt, 
                 airdropEndAt
             );
-            return _challengeId.current();
+            emit AddChallenge(challengeId,seller, collection, assetId, amount, allowResell, saleEnd, airdropStartAt, airdropEndAt);
+            return challengeId;
         }
     /**
     * @dev aidrop an NFT to a winner
@@ -70,7 +67,7 @@ contract ExchangeChallenge is IExchangeChallenge, Ownable{
         uint256 challengeId, 
         address receiver, 
         uint256 amount
-        ) external  override returns (bool sent){
+        ) external  override returns (bool){
             Challenge storage challenge = challenges[challengeId];
             require(challenge.amount > amount, "Challenge Exchange: Insufficient balance airdrop");
             challenge.amount =  uint256(challenge.amount).sub(amount);    
@@ -81,11 +78,11 @@ contract ExchangeChallenge is IExchangeChallenge, Ownable{
             }
             return true;
         }
-    function setMarketToken(address token) onlyOwner() external  override returns (bool sent){
+    function setMarketToken(address token) onlyOwner() external  override returns (bool){
         MARKET_TOKEN = IERC20(token);
         return true;
     }   
-    function setYaaasFee(uint256 fee) onlyOwner() external  override returns (bool sent){
+    function setYaaasFee(uint256 fee) onlyOwner() external  override returns (bool){
         YAAS_FEES = fee;
         return true;
     }

@@ -21,11 +21,11 @@ interface IExchangeChallenge {
     /**
      * @dev Emitted when `challengeId` challenge is created.
      */
-    event AddChallenge(address indexed seller, address indexed collection, uint256  assetId, uint256  amount,bool allowResell, uint256  saleEnd, uint256  airdropStartAt, uint256  airdropEndAt);
+    event AddChallenge(uint id, address indexed seller, address indexed collection, uint256  assetId, uint256  amount,bool allowResell, uint256  saleEnd, uint256  airdropStartAt, uint256  airdropEndAt);
     /**
      * @dev save an offer challenge.
      */
-    function addChallenge(address seller, address collection, uint256 assetId, uint256 amount, bool allowResell, uint256 saleEnd, uint256 airdropStartAt, uint256 airdropEndAt) external  returns (uint256 challengeId);
+    function addChallenge(uint id, address seller, address collection, uint256 assetId, uint256 amount, bool allowResell, uint256 saleEnd, uint256 airdropStartAt, uint256 airdropEndAt) external  returns (uint256);
 
     /**
      * @dev Emitted when `challengeId` challenge is created.
@@ -34,15 +34,15 @@ interface IExchangeChallenge {
     /**
      * @dev airdrop NFT token
      */
-    function airdropChallenge(uint challengeId, address receiver, uint256 amount) external returns (bool sent);
+    function airdropChallenge(uint challengeId, address receiver, uint256 amount) external returns (bool);
     /**
      * @dev set utility token
      */
-     function setMarketToken(address token)external   returns (bool sent);
+     function setMarketToken(address token)external   returns (bool);
     /**
      * @dev set marketplace  token nft number equivalent in ERC20
      */
-     function setYaaasFee(uint256 fee)external   returns (bool sent);
+     function setYaaasFee(uint256 fee)external   returns (bool);
 
 
 }

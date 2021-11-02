@@ -9,7 +9,7 @@ contract("YaasExchangeChallenge", accounts => {
 	let testERC1155;
 	let testERC20;
     let exchangeChallenge;
-
+    const challengeId = 1;
 	beforeEach(async () => {
         testERC1155 = await TestERC1155.new();
         testERC20 = await TestERC20.new();
@@ -31,6 +31,7 @@ contract("YaasExchangeChallenge", accounts => {
         it("Expect throw Challenge Exchange: Insufficient balance", async () => {
 			await expectThrow(
                  exchangeChallenge.addChallenge(
+                    challengeId,
                     seller, 
                     testERC1155.address, //collection
                     assetId, 
@@ -47,6 +48,7 @@ contract("YaasExchangeChallenge", accounts => {
                 seller = accounts[1];
                 await testERC20.approve(exchangeChallenge.address, web3.utils.toBN(amount*10e18), {from: accounts[1]});
                 const txp = await exchangeChallenge.addChallenge(
+                    challengeId,
                     seller, 
                     testERC1155.address, //collection
                     assetId, 
@@ -66,6 +68,7 @@ contract("YaasExchangeChallenge", accounts => {
             seller = accounts[1];
             await testERC20.approve(exchangeChallenge.address, web3.utils.toBN(amount*10e18), {from: accounts[1]});
             const txp = await exchangeChallenge.addChallenge(
+                challengeId,
                 seller, 
                 testERC1155.address, //collection
                 assetId, 
@@ -87,6 +90,7 @@ contract("YaasExchangeChallenge", accounts => {
             seller = accounts[1];
             await testERC20.approve(exchangeChallenge.address, web3.utils.toBN(amount*10e18), {from: accounts[1]});
             const txp = await exchangeChallenge.addChallenge(
+                challengeId,
                 seller, 
                 testERC1155.address, //collection
                 assetId, 
@@ -101,6 +105,7 @@ contract("YaasExchangeChallenge", accounts => {
             amount = 1;
             await expectThrow(
             exchangeChallenge.addChallenge(
+                challengeId,
                 accounts[3], 
                 testERC1155.address, //collection
                 assetId, 
