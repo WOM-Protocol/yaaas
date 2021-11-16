@@ -44,6 +44,12 @@ contract ExchangeChallenge is IExchangeChallenge, Ownable{
             require(MARKET_TOKEN.balanceOf(seller) >= uint256(YAAS_FEES).mul(amount) , "Challenge Exchange: Insufficient balance");
             require(airdropStartAt > block.timestamp, "Challenge Exchange: invalid start at airdrop");
             require(airdropEndAt > airdropStartAt, "Challenge Exchange: invalid  airdrop");
+            IERC1155 nftCollection = IERC1155(collection);
+            require(
+                nftCollection.balanceOf(_msgSender(), assetId) >= amount,
+                "Insufficient token balance"
+            );
+            require(seller == _msgSender(), "Seller should be owner");
             MARKET_TOKEN.transferFrom(_msgSender(), owner(), amount.mul(YAAS_FEES));
             challenges[challengeId] = Challenge(
                 seller, 
@@ -69,7 +75,10 @@ contract ExchangeChallenge is IExchangeChallenge, Ownable{
         uint256 amount
         ) external  override returns (bool){
             Challenge storage challenge = challenges[challengeId];
+            require(challenge.seller == _msgSender(),"Challenge Exchange: caller not an owner");
             require(challenge.amount > amount, "Challenge Exchange: Insufficient balance airdrop");
+            require(challenge.airdropStartAt >= block.timestamp, "Challenge Exchange: invalid start at airdrop");
+            require(challenge.airdropStartAt <= challenge.airdropEndAt, "Challenge Exchange: invalid  airdrop");
             challenge.amount =  uint256(challenge.amount).sub(amount);    
             IERC1155 nftCollection = IERC1155(challenge.collection);
             nftCollection.safeTransferFrom(_msgSender(), receiver, challenge.assetId, amount, "");
@@ -80,10 +89,12 @@ contract ExchangeChallenge is IExchangeChallenge, Ownable{
         }
     function setMarketToken(address token) onlyOwner() external  override returns (bool){
         MARKET_TOKEN = IERC20(token);
+        emit SetMarketToken(token);
         return true;
     }   
     function setYaaasFee(uint256 fee) onlyOwner() external  override returns (bool){
         YAAS_FEES = fee;
+        emit SetYaaasFee(fee);
         return true;
     }
 

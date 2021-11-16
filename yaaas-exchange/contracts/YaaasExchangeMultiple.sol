@@ -165,8 +165,9 @@ contract YaaasExchangeMultiple is
             (bool benifSent, ) = owner().call{value: ownerBenif}("");
             require(sent, "Failed to send Ether");
             require(benifSent, "Failed to send Ether");
+            nftCollection.safeTransferFrom(_to, _msgSender(), offer.assetId, amount, "");
         }
-        nftCollection.safeTransferFrom(_to, _msgSender(), offer.assetId, amount, "");
+       
     }
 
     function safePlaceBid(
@@ -180,8 +181,9 @@ contract YaaasExchangeMultiple is
     }
 
     function setOwnerShare(uint256 index, uint256 newShare) public onlyOwner {
-        require(newShare >= 0 && newShare <= 100, "Owner Share must be >= 0 and <= 100");
+        require(newShare <= 100, "Owner Share must be >= 0 and <= 100");
         shares[index] = newShare;
+        emit SetOwnerShare(index, newShare);
     }
 
     function _createBid(

@@ -55,4 +55,5 @@ contract IYaaasExchangeMultiple{
     );
     event BidAccepted(bytes32 id);
     event BidCancelled(bytes32 id);
+    event SetOwnerShare(uint256 index, uint256 newShare);
 }

@@ -114,8 +114,8 @@ contract WoomExchange is Ownable, ERC721Validator, IYaaasExchange, WoomReverseEx
             (bool benifSent, ) = owner().call{value: ownerBenif}("");
             require(sent, "Failed to send Ether");
             require(benifSent, "Failed to send Ether");
+            nftCollection.transferFrom(address(this), _msgSender(), offer.assetId);
         }
-        nftCollection.transferFrom(address(this), _msgSender(), offer.assetId);
     }
 
   function safePlaceBid(

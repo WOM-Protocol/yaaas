@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/WoomReverseExchange.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> WoomReverseExchange.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/60</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity &gt;=0.4.22 &lt;0.9.0;
+&nbsp;
+import "./IERC20.sol";
+import "./Ownable.sol";
+import "./ERC721Validator.sol";
+import "./IWoomReverseExchange.sol";
+import "./IERC721Receiver.sol";
+import "./SafeMath.sol";
+contract WoomReverseExchange is Ownable, ERC721Validator, IWoomReverseExchange{
+    mapping(address=&gt; mapping(uint  =&gt; RvsOffer)) public rvsOffers;
+    using SafeMath for uint256;
+    // For auctions bid by bider, collection and assetId
+    mapping(address =&gt; mapping( uint256 =&gt; mapping(address =&gt; RvsBid))) public rvsbidforAuctions;
+    uint public rvsOwnerShare = 1;
+<span class="fstat-no" title="function not covered" >    function rvsAddOffer(</span>
+        address _seller,
+        address _collection,
+        uint256 _assetId,
+        address _token,
+        bool isEther,
+        uint256 _price,
+        bool isForSell,
+        bool isForAuction,
+        uint256 expiresAt
+        )
+       public returns (bool success) {
+        // get NFT asset from seller
+<span class="cstat-no" title="statement not covered" >        IERC721 nftCollection = _requireERC721(_collection);</span>
+<span class="cstat-no" title="statement not covered" >        require(nftCollection.ownerOf(_assetId) == _msgSender(), "Transfer caller is not owner")</span>;
+<span class="cstat-no" title="statement not covered" >        require(_seller == _msgSender(), "Seller should be equals owner")</span>;
+<span class="cstat-no" title="statement not covered" >        require(nftCollection.isApprovedForAll(_msgSender(), address(this)), "Contract not approved")</span>;
+        // Create bid
+<span class="cstat-no" title="statement not covered" >        require( IERC20(_token).allowance(_msgSender(), address(this)) &gt;= _price , "NFT Marketplace: Allowance error")</span>;
+<span class="cstat-no" title="statement not covered" >        bytes32 OfferId =</span>
+        keccak256(
+          abi.encodePacked(
+            block.timestamp,
+            _msgSender(),
+            _collection,
+            _assetId,
+            expiresAt
+          )
+        );
+<span class="cstat-no" title="statement not covered" >        rvsOffers[_collection][_assetId] = RvsOffer(</span>
+            OfferId,
+            _seller,
+            _collection,
+            _assetId,
+            _token,
+            isEther,
+            _price,
+            isForSell,
+            isForAuction,
+            expiresAt
+        );
+<span class="cstat-no" title="statement not covered" >        nftCollection.safeTransferFrom(_seller, address(this), _assetId)</span>;
+<span class="cstat-no" title="statement not covered" >        emit RvsListed(_seller,_collection, _assetId, _token, _price);</span>
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+<span class="fstat-no" title="function not covered" >    function rvsSetOfferPrice(address collection, uint256 assetId, uint price ) public  returns(bool){</span>
+<span class="cstat-no" title="statement not covered" >        RvsOffer storage offer = _rvsGetOwnerOffer(collection, assetId);</span>
+<span class="cstat-no" title="statement not covered" >        offer.price = price</span>;
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+<span class="fstat-no" title="function not covered" >    function rvsSetForSell(address collection, uint256 assetId, bool isForSell) public  returns(bool){</span>
+<span class="cstat-no" title="statement not covered" >        RvsOffer storage offer = _rvsGetOwnerOffer(collection, assetId);</span>
+<span class="cstat-no" title="statement not covered" >        IERC721 nftCollection = _requireERC721(collection);</span>
+<span class="cstat-no" title="statement not covered" >        offer.isForSell = isForSell</span>;
+<span class="cstat-no" title="statement not covered" >        if(!isForSell){</span>
+<span class="cstat-no" title="statement not covered" >          nftCollection.safeTransferFrom(address(this), _msgSender(), assetId)</span>;
+        }else{
+<span class="cstat-no" title="statement not covered" >          nftCollection.safeTransferFrom(_msgSender(), address(this), assetId)</span>;
+        }  
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+<span class="fstat-no" title="function not covered" >    function rvsSetForAuction(address collection, uint256 assetId, bool isForAuction)public returns(bool){</span>
+<span class="cstat-no" title="statement not covered" >        RvsOffer storage offer = _rvsGetOwnerOffer(collection, assetId);</span>
+<span class="cstat-no" title="statement not covered" >        offer.isForAuction = isForAuction</span>;
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+<span class="fstat-no" title="function not covered" >    function rvsSetExpiresAt(address collection, uint256 assetId, uint256 expiresAt)public returns(bool){</span>
+<span class="cstat-no" title="statement not covered" >        RvsOffer storage offer = _rvsGetOwnerOffer(collection, assetId);</span>
+<span class="cstat-no" title="statement not covered" >        offer.expiresAt = expiresAt</span>;
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+<span class="fstat-no" title="function not covered" >    function _rvsGetOwnerOffer(address collection, uint256 assetId)internal view returns (RvsOffer storage){</span>
+<span class="cstat-no" title="statement not covered" >        RvsOffer storage offer = rvsOffers[collection][assetId];</span>
+<span class="cstat-no" title="statement not covered" >        require(_msgSender() == offer.seller, "Marketplace: invalid owner")</span>;
+<span class="cstat-no" title="statement not covered" >        return offer;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function rvsSafePlaceBid(</span>
+    address _collection,
+    uint256 _assetId,
+    uint256 _expiresAt
+  ) public {
+<span class="cstat-no" title="statement not covered" >    _rvsCreateBid(_collection, _assetId, _expiresAt)</span>;
+  }
+<span class="fstat-no" title="function not covered" >  function rvsSetOwnerShare(</span>
+    uint newShare
+  ) public onlyOwner{
+<span class="cstat-no" title="statement not covered" >    rvsOwnerShare = newShare</span>;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _rvsCreateBid(</span>
+    address _collection,
+    uint256 _assetId,
+    uint256 _expiresAt
+  ) internal {
+    // Checks order validity
+<span class="cstat-no" title="statement not covered" >    RvsOffer memory offer = rvsOffers[_collection][_assetId];</span>
+    // check on expire time
+<span class="cstat-no" title="statement not covered" >    if ( _expiresAt &gt; offer.expiresAt ) {</span>
+<span class="cstat-no" title="statement not covered" >      _expiresAt = offer.expiresAt</span>;
+    }
+    // Check price if theres previous a bid
+<span class="cstat-no" title="statement not covered" >    RvsBid memory bid = rvsbidforAuctions[_collection][_assetId][_msgSender()];</span>
+<span class="cstat-no" title="statement not covered" >    require(bid.id == 0 , "bid already exists")</span>;
+<span class="cstat-no" title="statement not covered" >    require(offer.isForAuction,"NFT Marketplace: NFT token not in sell")</span>;
+    // Create bid
+<span class="cstat-no" title="statement not covered" >    bytes32 bidId =</span>
+      keccak256(
+        abi.encodePacked(
+          block.timestamp,
+          msg.sender,
+          _expiresAt
+        )
+      );
+&nbsp;
+    // Save RvsBid for this order
+<span class="cstat-no" title="statement not covered" >    rvsbidforAuctions[_collection][_assetId][_msgSender()] = RvsBid({</span>
+      id: bidId,
+      bidder: _msgSender(),
+      expiresAt: _expiresAt
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    emit RvsBidCreated(</span>
+       bidId,
+      _collection,
+      _assetId,
+      _msgSender(), // bidder
+      _expiresAt
+    );
+  }
+<span class="fstat-no" title="function not covered" > function rvsCancelBid(</span>
+    address _collection,
+    uint256 _assetId,
+    address _bidder
+  ) external returns(bool) {
+<span class="cstat-no" title="statement not covered" >    IERC721 nftCollection = _requireERC721(_collection);</span>
+<span class="cstat-no" title="statement not covered" >    require(_bidder == _msgSender() || _msgSender() == nftCollection.ownerOf(_assetId), "Marketplace: Unauthorized operation")</span>;
+<span class="cstat-no" title="statement not covered" >    RvsBid memory bid = rvsbidforAuctions[_collection][_assetId][_msgSender()];</span>
+    delete rvsbidforAuctions[_collection][_assetId][_bidder];
+<span class="cstat-no" title="statement not covered" >    emit RvsBidCancelled(bid.id);</span>
+<span class="cstat-no" title="statement not covered" >    return true;</span>
+  }
+  
+<span class="fstat-no" title="function not covered" >  function rvsAcceptBid(</span>
+    address _collection,
+    uint256 _assetId,
+    address _bidder
+  ) public {
+    //get offer
+<span class="cstat-no" title="statement not covered" >    RvsOffer memory offer = rvsOffers[_collection][_assetId];</span>
+        // get bid to accept
+<span class="cstat-no" title="statement not covered" >    RvsBid memory bid = rvsbidforAuctions[_collection][_assetId][_bidder];</span>
+    
+    // get service fees
+<span class="cstat-no" title="statement not covered" >    uint ownerBenif = (offer.price).div(100).mul(rvsOwnerShare);</span>
+<span class="cstat-no" title="statement not covered" >    uint sellerAmount = (offer.price).sub(ownerBenif);</span>
+    // check seller
+<span class="cstat-no" title="statement not covered" >    require(offer.seller == _msgSender(), "Marketplace: unauthorized sender")</span>;
+<span class="cstat-no" title="statement not covered" >    require(offer.isForAuction, "Marketplace: offer not in auction")</span>;
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    require(bid.expiresAt &lt;= block.timestamp, "Marketplace: the bid expired")</span>;
+    
+    delete rvsbidforAuctions[_collection][_assetId][_bidder];
+<span class="cstat-no" title="statement not covered" >    emit RvsBidAccepted(bid.id);</span>
+    // transfer escrowed bid amount minus market fee to seller
+<span class="cstat-no" title="statement not covered" >    IERC20(offer.token).transferFrom(offer.seller ,bid.bidder, sellerAmount)</span>;
+<span class="cstat-no" title="statement not covered" >    IERC20(offer.token).transferFrom(offer.seller , owner(), ownerBenif)</span>;
+&nbsp;
+    delete rvsOffers[_collection][_assetId];
+    // Transfer NFT asset
+<span class="cstat-no" title="statement not covered" >    IERC721(_collection).safeTransferFrom(address(this), bid.bidder, _assetId)</span>;
+    // Notify ..
+<span class="cstat-no" title="statement not covered" >    emit RvsBidSuccessful(_collection, _assetId, bid.bidder);</span>
+  }
+ 
+&nbsp;
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Nov 16 2021 01:24:21 GMT+0100 (Central European Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

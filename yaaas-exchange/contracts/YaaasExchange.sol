@@ -38,7 +38,7 @@ contract YaaasExchange is
         bool isForAuction,
         uint256 expiresAt,
         uint256 shareIndex
-    ) public returns (bool success) {
+    ) external returns (bool success) {
         // get NFT asset from seller
         IERC721 nftCollection = _requireERC721(_collection);
         require(
@@ -82,7 +82,7 @@ contract YaaasExchange is
         address collection,
         uint256 assetId,
         uint256 price
-    ) public returns (bool) {
+    ) external returns (bool) {
         Offer storage offer = _getOwnerOffer(collection, assetId);
         offer.price = price;
         return true;
@@ -92,7 +92,7 @@ contract YaaasExchange is
         address collection,
         uint256 assetId,
         bool isForSell
-    ) public returns (bool) {
+    ) external returns (bool) {
         Offer storage offer = _getOwnerOffer(collection, assetId);
         IERC721 nftCollection = _requireERC721(collection);
         offer.isForSell = isForSell;
@@ -116,7 +116,7 @@ contract YaaasExchange is
         address collection,
         uint256 assetId,
         bool isForAuction
-    ) public returns (bool) {
+    ) external returns (bool) {
         Offer storage offer = _getOwnerOffer(collection, assetId);
         offer.isForAuction = isForAuction;
         return true;
@@ -126,7 +126,7 @@ contract YaaasExchange is
         address collection,
         uint256 assetId,
         uint256 expiresAt
-    ) public returns (bool) {
+    ) external returns (bool) {
         Offer storage offer = _getOwnerOffer(collection, assetId);
         offer.expiresAt = expiresAt;
         return true;
@@ -143,7 +143,7 @@ contract YaaasExchange is
     }
 
     function buyOffer(address collection, uint256 assetId)
-        public
+        external
         payable
         returns (bool success)
     {
@@ -175,8 +175,9 @@ contract YaaasExchange is
             (bool benifSent, ) = owner().call{value: ownerBenif}("");
             require(sent, "Failed to send Ether");
             require(benifSent, "Failed to send Ether");
+            nftCollection.transferFrom(address(this), _msgSender(), offer.assetId);
         }
-        nftCollection.transferFrom(address(this), _msgSender(), offer.assetId);
+        
     }
 
     function safePlaceBid(
@@ -190,8 +191,9 @@ contract YaaasExchange is
     }
 
     function setOwnerShare(uint256 index, uint256 newShare) public onlyOwner {
-        require(newShare >= 0 && newShare <= 100, "Owner Share must be >= 0 and <= 100");
+        require(newShare <= 100, "Owner Share must be >= 0 and <= 100");
         shares[index] = newShare;
+        emit SetOwnerShare(index, newShare);
     }
 
     function _createBid(
@@ -261,7 +263,7 @@ contract YaaasExchange is
         address _collection,
         uint256 _assetId,
         address _bidder
-    ) public {
+    ) external {
         //get offer
         Offer memory offer = offers[_collection][_assetId];
         // get bid to accept

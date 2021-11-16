@@ -43,6 +43,11 @@ interface IExchangeChallenge {
      * @dev set marketplace  token nft number equivalent in ERC20
      */
      function setYaaasFee(uint256 fee)external   returns (bool);
+    /**
+     */
 
+    event SetMarketToken(address  token);
+    event SetYaaasFee(uint256 fee);
+ 
 
 }
